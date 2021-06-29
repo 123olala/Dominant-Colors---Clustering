@@ -31,7 +31,7 @@ st.code(''' "made by cao long ạ" ''',language='python')
 
 st.subheader('1. Introduction:')
 st.markdown("""
-This project visualizes the dominant colors of an image by cluster analysis (using **KMeans** unsupervised algorithm)!\n
+This project visualizes the dominant colors of an image by cluster analysis method (using **KMeans** unsupervised algorithm) !\n
 **Python libraries:** streamlit, pandas, matplotlib, seaborn, numpy, PIL, requests, scipy.
 """)    #Discription
 
