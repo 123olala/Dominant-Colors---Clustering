@@ -70,10 +70,16 @@ if len(url) > 0:
     for row in small_im_array:
         for pixel in row:
             #A pixel contains RGB values
-            temp_r, temp_g, temp_b = pixel 
-            r.append(temp_r)
-            g.append(temp_g)
-            b.append(temp_b)
+             if len(pixel) == 3:
+                temp_r, temp_g, temp_b = pixel 
+                r.append(temp_r)
+                g.append(temp_g)
+                b.append(temp_b)
+            else:
+                temp_r, temp_g, temp_b = pixel[:3]
+                r.append(temp_r)
+                g.append(temp_g)
+                b.append(temp_b)
     #Dataframe with RBG values
     pixels = pd.DataFrame({'red':r,'blue':b,'green':g})
     pixels['scaled_red'] = whiten(pixels['red'])
