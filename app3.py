@@ -82,30 +82,20 @@ if len(url) > 0:
                 b.append(temp_b)
     #Dataframe with RBG values
     pixels = pd.DataFrame({'red':r,'blue':b,'green':g})
-    pixels['scaled_red'] = whiten(pixels['red'])
-    pixels['scaled_blue'] = whiten(pixels['blue'])
-    pixels['scaled_green'] = whiten(pixels['green'])
     #Find dominant colors 
-    cluster_centers,_ = kmeans(pixels[['scaled_red','scaled_blue','scaled_green']],k)
+    cluster_centers,_ = kmeans(pixels[['red','green','blue']].values.astype(float),k)
     #Get colors
-    colors = []
-    #Find Standard Deviations
-    r_std,g_std,b_std = pixels[['red','blue','green']].std()
-    #Scale actual RGB values in range of 0-1
-    for cluster_center in cluster_centers:
-        scaled_r,scaled_g,scaled_b = cluster_center
-        colors.append((
-            scaled_r * r_std/255,
-            scaled_g * g_std/255,
-            scaled_b * b_std/255
-        ))
+    colors = cluster_centers.reshape(1,k,3)/255.
     #Display dominant colors
-    st.write('Your dominant colors:')
-    f, ax = plt.subplots(figsize=(7, 5))
-    ax = plt.imshow([colors])
-    plt.title('Dominant Colors')
-    plt.axis('off')
-    st.pyplot(f)
+    try:
+        st.write('Your dominant colors:')
+        f, ax = plt.subplots(figsize=(7, 5))
+        ax = plt.imshow([colors])
+        plt.title('Dominant Colors')
+        plt.axis('off')
+        st.pyplot(f)
+    except:
+        st.write('**The number of colors you choose is exceeded the number of colors this image has.**')
 
 
 
