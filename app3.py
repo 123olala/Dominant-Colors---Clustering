@@ -84,10 +84,10 @@ if len(url) > 0:
     pixels = pd.DataFrame({'red':r,'blue':b,'green':g})
     #Find dominant colors 
     cluster_centers,_ = kmeans(pixels[['red','green','blue']].values.astype(float),k)
-    #Get colors
-    colors = cluster_centers.reshape(1,k,3)/255.
-    #Display dominant colors
     try:
+        #Get colors
+        colors = cluster_centers.reshape(1,k,3)/255.
+        #Display dominant colors
         st.write('Your dominant colors:')
         f, ax = plt.subplots(figsize=(7, 5))
         ax = plt.imshow(colors)
