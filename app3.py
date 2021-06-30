@@ -90,7 +90,7 @@ if len(url) > 0:
     try:
         st.write('Your dominant colors:')
         f, ax = plt.subplots(figsize=(7, 5))
-        ax = plt.imshow([colors])
+        ax = plt.imshow(colors)
         plt.title('Dominant Colors')
         plt.axis('off')
         st.pyplot(f)
